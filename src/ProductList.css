@@ -250,7 +250,3 @@ body {
         text-align: center; /* Align text to the center */
       }
   }
-
-button::after {
-    background-color: grey;
-}
