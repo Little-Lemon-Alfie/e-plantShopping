@@ -309,9 +309,8 @@ function ProductList({ onHomeClick }) {
                             <button
                                 className="product-button"
                                 style={{
-                                backgroundColor: addedToCart[plant.name] ? 'green' : '#4CAF50',
+                                backgroundColor: addedToCart[plant.name] ? 'grey' : 'green',
                                 color: 'white',
-                                cursor: addedToCart[plant.name] ? 'not-allowed' : 'pointer'
                                 }}
                                 disabled={addedToCart[plant.name]}
                                 onClick={() => handleAddToCart(plant)}
