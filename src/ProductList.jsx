@@ -307,14 +307,16 @@ function ProductList({ onHomeClick }) {
                             <div className="product-description">{plant.description}</div> {/* Display plant description */}
                             <div className="product-cost">${plant.cost}</div> {/* Display plant cost */}
                             <button
-                            className="product-button"
-                            style={{
-                                backgroundColor: addedToCart[plant.name] ? 'grey' : 'green',
-                                color: 'white'
-                            }}
-                            onClick={() => handleAddToCart(plant)}
-                            >
-                            {addedToCart[plant.name] ? 'Added to Cart' : 'Add to Cart'}
+                                className="product-button"
+                                style={{
+                                backgroundColor: addedToCart[plant.name] ? 'green' : '#4CAF50',
+                                color: 'white',
+                                cursor: addedToCart[plant.name] ? 'not-allowed' : 'pointer'
+                                }}
+                                disabled={addedToCart[plant.name]}
+                                onClick={() => handleAddToCart(plant)}
+                                >
+                                {addedToCart[plant.name] ? 'Added to Cart ✓' : 'Add to Cart'}
                             </button>
                             </div>
                         ))}
