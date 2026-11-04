@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from './CartSlice';
 import './ProductList.css';
 import CartItem from './CartItem';
 
 function ProductList({ onHomeClick }) {
     const dispatch = useDispatch();
+    const cart = useSelector(state => state.cart.items);
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+
     const plantsArray = [
+    
+
         {
             category: "Air Purifying Plants",
             plants: [
@@ -221,7 +225,7 @@ function ProductList({ onHomeClick }) {
         padding: '15px',
         display: 'flex',
         justifyContent: 'space-between',
-        alignIems: 'center',
+        alignItems: 'center',
         fontSize: '20px',
     }
     const styleObjUl = {
@@ -258,15 +262,24 @@ function ProductList({ onHomeClick }) {
 
     const [addedToCart, setAddedToCart] = useState({});
 
+    useEffect(() => {
+        const updatedAddedToCart = {};
+
+        cart.forEach(item => {
+            updatedAddedToCart[item.name] = true;
+        });
+
+        setAddedToCart(updatedAddedToCart);
+    }, [cart]);
+
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
-    
+
         setAddedToCart((prevState) => ({
             ...prevState,
             [product.name]: true,
         }));
     };
-
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -331,3 +344,4 @@ function ProductList({ onHomeClick }) {
 }
 
 export default ProductList;
+
